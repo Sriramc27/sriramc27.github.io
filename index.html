@@ -1,0 +1,622 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sriram Chennamaneni — Software Engineer Portfolio</title>
+  <link rel="icon" type="image/svg+xml"
+    href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="12" fill="%2322c55e"/><text x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" fill="white">SC</text></svg>'>
+  <meta name="description" content="Software Engineer (~3.5 YOE) delivering impactful full-stack, backend, and ML solutions. Python, SQL, JavaScript, React, Node.js, AWS, microservices." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { 
+            sans: ['Inter', 'ui-sans-serif', 'system-ui'],
+          },
+          colors: { 
+            brand: { 
+              50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe', 300: '#93c5fd',
+              400: '#60a5fa', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8',
+              800: '#1e40af', 900: '#1e3a8a', DEFAULT: '#2563eb'
+            },
+            purple: { 50: '#faf5ff', 600: '#9333ea', 700: '#7c3aed' }
+          },
+          boxShadow: {
+            'card': '0 10px 25px -5px rgba(0,0,0,.1), 0 4px 6px -2px rgba(0,0,0,.05)',
+            'card-hover': '0 20px 40px -12px rgba(0,0,0,.25)',
+            'glow': '0 0 20px rgba(59,130,246,.5)',
+          },
+          animation: {
+            'fade-in': 'fadeIn .8s ease-out',
+            'slide-up': 'slideUp .8s ease-out',
+            'bounce-slow': 'bounce 3s infinite',
+            'pulse-slow': 'pulse 4s cubic-bezier(.4,0,.6,1) infinite',
+          },
+          keyframes: {
+            fadeIn: { '0%': {opacity:0}, '100%': {opacity:1} },
+            slideUp: { '0%': {transform:'translateY(20px)',opacity:0}, '100%': {transform:'translateY(0)',opacity:1} }
+          }
+        }
+      },
+      darkMode: 'class'
+    }
+  </script>
+  <style>
+    .reveal{opacity:0;transform:translateY(30px);transition:all .8s cubic-bezier(.25,.46,.45,.94)}
+    .reveal.show{opacity:1;transform:translateY(0)}
+    #progress{position:fixed;top:0;left:0;height:4px;background:linear-gradient(90deg,#3b82f6,#9333ea);width:0;z-index:50;transition:width .3s ease}
+    .nav-active{color:#2563eb;position:relative}
+    .nav-active::after{content:'';position:absolute;bottom:-4px;left:0;width:100%;height:2px;background:#2563eb;border-radius:1px}
+    .gradient-text{background:linear-gradient(135deg,#3b82f6,#9333ea);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:200% 200%;animation:gradientShift 3s ease infinite}
+    @keyframes gradientShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+    .card-hover{transition:all .3s cubic-bezier(.25,.46,.45,.94)}
+    .card-hover:hover{transform:translateY(-8px);box-shadow:0 20px 40px -12px rgba(0,0,0,.25)}
+    .floating{animation:floating 6s ease-in-out infinite}
+    @keyframes floating{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+    .hero-bg{background-image:radial-gradient(circle at 1px 1px,rgba(59,130,246,.15) 1px,transparent 0);background-size:20px 20px}
+    .glass{backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);background:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.2)}
+    .dark .glass{background:rgba(15,23,42,.8);border:1px solid rgba(71,85,105,.2)}
+    .skill-tag{transition:all .3s ease}
+    .skill-tag:hover{transform:scale(1.05);background:linear-gradient(135deg,#3b82f6,#9333ea);color:#fff}
+    /* Ensure images don’t overflow and respect rounded corners */
+    img{display:block;max-width:100%}
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-gray-100 overflow-x-hidden">
+  <div id="progress"></div>
+
+  <header class="fixed top-0 w-full z-50 glass">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="#home" class="font-black text-xl tracking-tight">
+        <span class="gradient-text">Sriram Rao Chennamaneni</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-8 font-medium">
+        <a href="#about" class="hover:text-brand-600 transition-colors">About</a>
+        <a href="#experience" class="hover:text-brand-600 transition-colors">Experience</a>
+        <a href="#projects" class="hover:text-brand-600 transition-colors">Projects</a>
+        <a href="#skills" class="hover:text-brand-600 transition-colors">Skills</a>
+        <a href="#contact" class="hover:text-brand-600 transition-colors">Contact</a>
+        <a href="Sriramrao_Chennamaneni_Res.pdf" class="px-4 py-2 rounded-full bg-brand-600 text-white hover:bg-brand-700 transition-all shadow-lg hover:shadow-glow" download>
+          Resume
+        </a>
+        <button id="themeToggle" class="p-2 rounded-full border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all" aria-label="Toggle theme">🌙</button>
+      </nav>
+      <button id="menuBtn" class="md:hidden p-2 rounded-lg border border-gray-200 dark:border-gray-700">☰</button>
+    </div>
+    <div id="mobileNav" class="md:hidden hidden border-t border-gray-200 dark:border-gray-700 glass">
+      <nav class="px-4 py-4 flex flex-col gap-4">
+        <a href="#about" class="hover:text-brand-600 transition-colors">About</a>
+        <a href="#experience" class="hover:text-brand-600 transition-colors">Experience</a>
+        <a href="#projects" class="hover:text-brand-600 transition-colors">Projects</a>
+        <a href="#skills" class="hover:text-brand-600 transition-colors">Skills</a>
+        <a href="#contact" class="hover:text-brand-600 transition-colors">Contact</a>
+        <a href="Sriramrao_Chennamaneni_Res.pdf" class="px-4 py-2 rounded-full bg-brand-600 text-white text-center" download>Resume</a>
+      </nav>
+    </div>
+  </header>
+
+  <section id="home" class="min-h-screen flex items-center hero-bg pt-20">
+    <div class="max-w-7xl mx-auto px-4 py-20">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="reveal">
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-100 dark:bg-brand-900/30 text-brand-600 dark:text-brand-400 text-sm font-medium mb-6">
+            <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+            Available for new opportunities
+          </div>
+          <h1 class="text-5xl md:text-6xl lg:text-7xl font-black leading-tight mb-6">
+            Hi, I'm <br><span class="gradient-text">Sriram Rao Chennamaneni</span>
+          </h1>
+          <h2 class="text-2xl md:text-3xl font-bold text-gray-600 dark:text-gray-300 mb-6">
+            Software Engineer — Full-Stack, Backend & ML
+          </h2>
+          <p class="text-lg text-gray-600 dark:text-gray-400 mb-8 leading-relaxed max-w-xl">
+            Software Engineer (~3.5 YOE) delivering impactful full-stack and backend solutions. Expertise: Python, SQL, JavaScript, React, Node.js, AI/ML, AWS, and microservices. Proven ability to scale systems, enhance data integrity, and streamline workflows.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href="#projects" class="px-8 py-4 rounded-full bg-brand-600 text-white font-semibold hover:bg-brand-700 transition-all shadow-lg hover:shadow-glow">View My Work</a>
+            <a href="#contact" class="px-8 py-4 rounded-full border-2 border-gray-300 dark:border-gray-600 hover:border-brand-600 dark:hover:border-brand-600 transition-all">Get In Touch</a>
+          </div>
+          <div class="flex gap-6 mt-8">
+            <a href="https://github.com/Sriramc27" target="_blank" rel="noreferrer" class="p-3 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-brand-100 dark:hover:bg-brand-900/30 transition-all"><i data-lucide="github" class="w-6 h-6"></i></a>
+            <a href="https://www.linkedin.com/in/sriramchennamaneni/" target="_blank" rel="noreferrer" class="p-3 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-brand-100 dark:hover:bg-brand-900/30 transition-all"><i data-lucide="linkedin" class="w-6 h-6"></i></a>
+            <a href="mailto:Sriramrao.Chennamaneni@gmail.com" class="p-3 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-brand-100 dark:hover:bg-brand-900/30 transition-all"><i data-lucide="mail" class="w-6 h-6"></i></a>
+          </div>
+        </div>
+
+        <!-- IMAGE FIX: overflow-hidden + object-cover + full sizing -->
+        <div class="reveal flex justify-center lg:justify-end">
+          <div class="relative">
+            <div class="w-80 h-80 rounded-3xl bg-gradient-to-br from-brand-500 to-purple-600 p-1 floating overflow-hidden">
+              <img
+                src="Personal.jpg"
+                alt="Portrait of Sriram Chennamaneni"
+                class="w-full h-full rounded-3xl object-cover"
+                onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop';"
+              />
+            </div>
+            <div class="absolute -bottom-6 -right-6 w-24 h-24 rounded-2xl bg-white dark:bg-gray-800 shadow-card flex items-center justify-center">
+              <i data-lucide="code" class="w-12 h-12 text-brand-600"></i>
+            </div>
+          </div>
+        </div>
+        <!-- /IMAGE FIX -->
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="py-20 bg-white dark:bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-16 reveal">
+        <h2 class="text-4xl md:text-5xl font-black mb-6">About <span class="gradient-text">Me</span></h2>
+        <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
+          Software Engineer with 3+ years of experience across full-stack development, backend systems, and machine learning. Proficient in Python, SQL, React, Node.js, and AWS. I’ve shipped energy forecasting and anomaly detection models, event-driven data pipelines, secure REST APIs (Cognito, API Gateway), and real-time dashboards that improve decision-making.
+        </p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="reveal card-hover p-8 rounded-2xl bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+          <div class="w-16 h-16 rounded-2xl bg-brand-100 dark:bg-brand-900/30 flex items-center justify-center mb-6"><i data-lucide="laptop" class="w-8 h-8 text-brand-600"></i></div>
+          <h3 class="text-xl font-bold mb-4">Full-Stack Development</h3>
+          <p class="text-gray-600 dark:text-gray-400">React + Node.js apps, role-based access, secure REST APIs, and desktop apps with Tauri.</p>
+        </div>
+        <div class="reveal card-hover p-8 rounded-2xl bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+          <div class="w-16 h-16 rounded-2xl bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center mb-6"><i data-lucide="database" class="w-8 h-8 text-purple-600"></i></div>
+          <h3 class="text-xl font-bold mb-4">Data Engineering</h3>
+          <p class="text-gray-600 dark:text-gray-400">Event-driven pipelines on AWS (Lambda, S3, DynamoDB), PostgreSQL/MySQL, Spark/Kafka, dbt.</p>
+        </div>
+        <div class="reveal card-hover p-8 rounded-2xl bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+          <div class="w-16 h-16 rounded-2xl bg-green-100 dark:bg-green-900/30 flex items-center justify-center mb-6"><i data-lucide="brain" class="w-8 h-8 text-green-600"></i></div>
+          <h3 class="text-xl font-bold mb-4">AI & ML</h3>
+          <p class="text-gray-600 dark:text-gray-400">Forecasting & anomaly detection (scikit-learn/TensorFlow); RAG prototypes with Pinecone & OpenAI.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" class="py-20 bg-gray-50 dark:bg-gray-950">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-16 reveal">
+        <h2 class="text-4xl md:text-5xl font-black mb-6">My <span class="gradient-text">Experience</span></h2>
+        <p class="text-xl text-gray-600 dark:text-gray-400">Professional journey and key achievements</p>
+      </div>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="reveal card-hover p-8 rounded-2xl bg-white dark:bg-gray-900 shadow-card">
+          <div class="flex items-start justify-between mb-6">
+            <div><h3 class="text-xl font-bold mb-2">Software Engineer — Machine Learning</h3><p class="text-brand-600 font-semibold">NextNRG · Miami, FL</p></div>
+            <span class="px-3 py-1 rounded-full bg-brand-100 dark:bg-brand-900/30 text-brand-600 text-sm font-medium">Jun 2024 – Present</span>
+          </div>
+          <ul class="space-y-3 text-gray-600 dark:text-gray-400">
+            <li class="flex items-start gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0"></i><span>Developed & deployed Python ML models for energy forecasting and anomaly detection to optimize smart-grid operations.</span></li>
+            <li class="flex items-start gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0"></i><span>Built a cross-platform desktop app (React, Node.js, Python, Tauri) on AWS (S3, CloudFront, API Gateway, EC2, Docker), reducing deployment overhead by 40%.</span></li>
+            <li class="flex items-start gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0"></i><span>Implemented secure REST APIs with API Gateway + Cognito; delivered role-based dashboards for real-time decisions.</span></li>
+            <li class="flex items-start gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0"></i><span>Automated ingestion & processing pipelines (Lambda, S3, DynamoDB, SQL), cutting processing time by ~50%.</span></li>
+            <li class="flex items-start gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0"></i><span>Designed interactive dashboards with role-based access, enhancing real-time decision-making for energy operations.</span></li>
+          </ul>
+        </div>
+
+        <div class="reveal card-hover p-8 rounded-2xl bg-white dark:bg-gray-900 shadow-card">
+          <div class="flex items-start justify-between mb-6">
+            <div><h3 class="text-xl font-bold mb-2">Graduate Research Assistant</h3><p class="text-brand-600 font-semibold">Florida International University · Miami, FL</p></div>
+            <span class="px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 text-sm font-medium">Mar 2023 – May 2024</span>
+          </div>
+          <ul class="space-y-3 text-gray-600 dark:text-gray-400">
+            <li class="flex items-start gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0"></i><span>Converted ADMS data to Open-DSS via Python for real-time distribution simulations.</span></li>
+            <li class="flex items-start gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0"></i><span>Analyzed Bloomberg/Refinitiv datasets using SAS, Excel, Python to deliver ESG/financial insights 20% faster.</span></li>
+            <li class="flex items-start gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0"></i><span>Built forecasting models (PV, load, weather, market) with scikit-learn, improving accuracy by ~15%.</span></li>
+          </ul>
+        </div>
+
+        <div class="reveal card-hover p-8 rounded-2xl bg-white dark:bg-gray-900 shadow-card md:col-span-2">
+          <div class="flex items-start justify-between mb-6">
+            <div><h3 class="text-xl font-bold mb-2">Junior Software Engineer</h3><p class="text-brand-600 font-semibold">Cognizant Technology Solutions · Hyderabad, IN</p></div>
+            <span class="px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 text-sm font-medium">Jan 2021 – Dec 2022</span>
+          </div>
+          <ul class="space-y-3 text-gray-600 dark:text-gray-400">
+            <li class="flex items-start gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0"></i><span>Maintained fault-tolerant backend components (COBOL, JCL, IMS DB) for Northern Trust; improved uptime & performance.</span></li>
+            <li class="flex items-start gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0"></i><span>Optimized SQL and DB views, lowering resource consumption by 34%; resolved ~95% incidents within SLAs.</span></li>
+            <li class="flex items-start gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0"></i><span>Automated 30+ Service Requests via ServiceNow and supported integration testing & production releases.</span></li>
+            <li class="flex items-start gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0"></i><span>Collaborated on integration testing and production support, reducing critical incident downtime by 15%.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="py-20 bg-white dark:bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-16 reveal">
+        <h2 class="text-4xl md:text-5xl font-black mb-6">Featured <span class="gradient-text">Projects</span></h2>
+        <p class="text-xl text-gray-600 dark:text-gray-400">Recent work across AI workflows, data engineering, and apps</p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <article class="reveal card-hover rounded-2xl bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 overflow-hidden">
+          <div class="aspect-video bg-gradient-to-br from-brand-500 to-purple-600 p-8 flex items-center justify-center"><i data-lucide="server" class="w-16 h-16 text-white"></i></div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-3">Data Engineering Zoomcamp</h3>
+            <p class="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">ETL pipelines with Docker, Spark & Kafka for real-time processing; deployed on GCP via Terraform & BigQuery.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="skill-tag px-3 py-1 rounded-full bg-gray-200 dark:bg-gray-700 text-sm">Docker</span>
+              <span class="skill-tag px-3 py-1 rounded-full bg-gray-200 dark:bg-gray-700 text-sm">Spark</span>
+              <span class="skill-tag px-3 py-1 rounded-full bg-gray-200 dark:bg-gray-700 text-sm">Kafka</span>
+              <span class="skill-tag px-3 py-1 rounded-full bg-gray-200 dark:bg-gray-700 text-sm">GCP & Terraform</span>
+            </div>
+            <div class="flex gap-3"><a href="https://github.com/Sriramc27/data-engineering-zoomcamp" target="_blank" class="flex items-center gap-2 text-brand-600 hover:text-brand-700 font-medium"><i data-lucide="github" class="w-4 h-4"></i>Code</a></div>
+          </div>
+        </article>
+
+        <article class="reveal card-hover rounded-2xl bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 overflow-hidden">
+          <div class="aspect-video bg-gradient-to-br from-green-500 to-teal-600 p-8 flex items-center justify-center"><i data-lucide="shield" class="w-16 h-16 text-white"></i></div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-3">Phishing URL Classification</h3>
+            <p class="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">Extreme Learning Machine model achieving ~97% accuracy; compared with Naive Bayes & SVM. Built CNN/DNN/HMM variants in TensorFlow/Keras.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="skill-tag px-3 py-1 rounded-full bg-gray-200 dark:bg-gray-700 text-sm">Python</span>
+              <span class="skill-tag px-3 py-1 rounded-full bg-gray-200 dark:bg-gray-700 text-sm">TensorFlow/Keras</span>
+              <span class="skill-tag px-3 py-1 rounded-full bg-gray-200 dark:bg-gray-700 text-sm">Scikit-learn</span>
+            </div>
+            <div class="flex gap-3"><a href="https://github.com/Sriramc27/Phishing-websites-URLs-Classification-using-Machine-Learning-algorithms" target="_blank" class="flex items-center gap-2 text-brand-600 hover:text-brand-700 font-medium"><i data-lucide="github" class="w-4 h-4"></i>Code</a></div>
+          </div>
+        </article>
+
+        <article class="reveal card-hover rounded-2xl bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 overflow-hidden">
+          <div class="aspect-video bg-gradient-to-br from-purple-500 to-pink-600 p-8 flex items-center justify-center"><i data-lucide="bot" class="w-16 h-16 text-white"></i></div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-3">AI Workflows with n8n</h3>
+            <p class="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">RAG chatbot (Drive → OpenAI embeddings → Pinecone), Gmail support bot with knowledge base, and a LinkedIn content generator (Tavily + Sheets).</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="skill-tag px-3 py-1 rounded-full bg-gray-200 dark:bg-gray-700 text-sm">OpenAI</span>
+              <span class="skill-tag px-3 py-1 rounded-full bg-gray-200 dark:bg-gray-700 text-sm">Pinecone</span>
+              <span class="skill-tag px-3 py-1 rounded-full bg-gray-200 dark:bg-gray-700 text-sm">n8n</span>
+              <span class="skill-tag px-3 py-1 rounded-full bg-gray-200 dark:bg-gray-700 text-sm">Google APIs</span>
+            </div>
+            <div class="flex gap-3"><a href="https://github.com/Sriramc27/AI-Workflows-using-n8n/tree/main" target="_blank" class="flex items-center gap-2 text-brand-600 hover:text-brand-700 font-medium"><i data-lucide="github" class="w-4 h-4"></i>Code</a></div>
+          </div>
+        </article>
+      </div>
+      <div class="text-center mt-12 reveal">
+        <a href="https://github.com/Sriramc27" target="_blank" class="inline-flex items-center gap-2 px-8 py-4 rounded-full border-2 border-brand-600 text-brand-600 hover:bg-brand-600 hover:text-white transition-all font-semibold">
+          <i data-lucide="github" class="w-5 h-5"></i>View All Projects on GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="py-20 bg-gray-50 dark:bg-gray-950">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-16 reveal">
+        <h2 class="text-4xl md:text-5xl font-black mb-6">Technical <span class="gradient-text">Skills</span></h2>
+        <p class="text-xl text-gray-600 dark:text-gray-400">Technologies and tools I work with</p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="reveal">
+          <h3 class="text-lg font-bold mb-4 flex items-center gap-2"><i data-lucide="code" class="w-5 h-5 text-brand-600"></i>Programming</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag px-3 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">Python</span>
+            <span class="skill-tag px-3 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">JavaScript</span>
+            <span class="skill-tag px-3 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">C++</span>
+            <span class="skill-tag px-3 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">HTML/CSS</span>
+            <span class="skill-tag px-3 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">Cobol/JCL</span>
+          </div>
+        </div>
+        <div class="reveal">
+          <h3 class="text-lg font-bold mb-4 flex items-center gap-2"><i data-lucide="server" class="w-5 h-5 text-brand-600"></i>Frontend/Backend</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag px-3 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">React</span>
+            <span class="skill-tag px-3 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">Node.js</span>
+            <span class="skill-tag px-3 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">Express</span>
+            <span class="skill-tag px-3 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">Python</span>
+            <span class="skill-tag px-3 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">REST APIs</span>
+            <span class="skill-tag px-3 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">Tauri</span>
+          </div>
+        </div>
+        <div class="reveal">
+          <h3 class="text-lg font-bold mb-4 flex items-center gap-2"><i data-lucide="database" class="w-5 h-5 text-brand-600"></i>Data & ML</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag px-3 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">MySQL/PostgreSQL/SQLite</span>
+            <span class="skill-tag px-3 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">IMS DB</span>
+            <span class="skill-tag px-3 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">Pandas/NumPy</span>
+            <span class="skill-tag px-3 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">Scikit-learn</span>
+            <span class="skill-tag px-3 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">TensorFlow</span>
+            <span class="skill-tag px-3 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">Power BI (DAX)</span>
+            <span class="skill-tag px-3 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">Excel</span>
+          </div>
+        </div>
+        <div class="reveal">
+          <h3 class="text-lg font-bold mb-4 flex items-center gap-2"><i data-lucide="cloud" class="w-5 h-5 text-brand-600"></i>Cloud & DevOps</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-tag px-3 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">AWS</span>
+            <span class="skill-tag px-3 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">GCP</span>
+            <span class="skill-tag px-3 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">Docker</span>
+            <span class="skill-tag px-3 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">Terraform</span>
+            <span class="skill-tag px-3 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">Linux</span>
+            <span class="skill-tag px-3 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">Git/GitHub Actions</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="certifications" class="py-20 bg-white dark:bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-12 reveal">
+        <h2 class="text-4xl md:text-5xl font-black mb-4">
+          <span class="gradient-text">Certifications</span>
+        </h2>
+        <p class="text-lg text-gray-600 dark:text-gray-400">
+          Cloud & data credentials that back my hands-on experience
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- GCP PDE -->
+        <div class="reveal p-6 rounded-2xl bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 card-hover flex items-start gap-4">
+          <div class="w-12 h-12 rounded-xl bg-brand-100 dark:bg-brand-900/30 flex items-center justify-center">
+            <i data-lucide="award" class="w-6 h-6 text-brand-600"></i>
+          </div>
+          <div>
+            <h3 class="font-bold">Google Cloud Professional Data Engineer</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400">Issued 2024</p>
+            <!-- If you have a verification URL, add it here -->
+            <!-- <a href="https://..." target="_blank" class="text-brand-600 hover:text-brand-700 text-sm font-medium inline-flex items-center gap-1 mt-1">
+              Verify <i data-lucide="external-link" class="w-4 h-4"></i>
+            </a> -->
+          </div>
+        </div>
+
+        <!-- Azure AZ-900 -->
+        <div class="reveal p-6 rounded-2xl bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 card-hover flex items-start gap-4">
+          <div class="w-12 h-12 rounded-xl bg-brand-100 dark:bg-brand-900/30 flex items-center justify-center">
+            <i data-lucide="shield-check" class="w-6 h-6 text-brand-600"></i>
+          </div>
+          <div>
+            <h3 class="font-bold">Microsoft Azure Fundamentals (AZ-900)</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400">Issued 2023</p>
+            <!-- <a href="https://..." target="_blank" class="text-brand-600 hover:text-brand-700 text-sm font-medium inline-flex items-center gap-1 mt-1">
+              Verify <i data-lucide="external-link" class="w-4 h-4"></i>
+            </a> -->
+          </div>
+        </div>
+
+        <!-- Azure DP-900 -->
+        <div class="reveal p-6 rounded-2xl bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 card-hover flex items-start gap-4">
+          <div class="w-12 h-12 rounded-xl bg-brand-100 dark:bg-brand-900/30 flex items-center justify-center">
+            <i data-lucide="database" class="w-6 h-6 text-brand-600"></i>
+          </div>
+          <div>
+            <h3 class="font-bold">Microsoft Azure Data Fundamentals (DP-900)</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400">Issued 2023</p>
+            <!-- <a href="https://..." target="_blank" class="text-brand-600 hover:text-brand-700 text-sm font-medium inline-flex items-center gap-1 mt-1">
+              Verify <i data-lucide="external-link" class="w-4 h-4"></i>
+            </a> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- <section id="extracurriculars" class="py-16 bg-gray-50 dark:bg-gray-950">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-10 reveal">
+        <h2 class="text-3xl md:text-4xl font-black">
+          <span class="gradient-text">Extracurriculars</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="reveal p-6 rounded-2xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 card-hover">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-brand-100 dark:bg-brand-900/30 flex items-center justify-center">
+              <i data-lucide="briefcase" class="w-6 h-6 text-brand-600"></i>
+            </div>
+            <div>
+              <h3 class="font-bold">Bookseller – Barnes & Noble (FIU)</h3>
+              <p class="text-sm text-gray-600 dark:text-gray-400">Jan 2023</p>
+              <p class="mt-2 text-gray-700 dark:text-gray-300">
+                Customer assistance, POS, merchandising, and daily retail ops—strengthening communication and service skills.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal p-6 rounded-2xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 card-hover">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-brand-100 dark:bg-brand-900/30 flex items-center justify-center">
+              <i data-lucide="users" class="w-6 h-6 text-brand-600"></i>
+            </div>
+            <div>
+              <h3 class="font-bold">Volunteer – SOBEWFF</h3>
+              <p class="text-sm text-gray-600 dark:text-gray-400">Feb 2023</p>
+              <p class="mt-2 text-gray-700 dark:text-gray-300">
+                Supported planning & on-site execution for a top culinary festival; coordination with chefs, vendors, and operations teams.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+
+  <section id="contact" class="py-20 bg-white dark:bg-gray-900">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-16 reveal">
+        <h2 class="text-4xl md:text-5xl font-black mb-6">
+          Let's <span class="gradient-text">Connect</span>
+        </h2>
+        <p class="text-xl text-gray-600 dark:text-gray-400">
+          Have a project or role in mind? Let’s talk.
+        </p>
+      </div>
+
+      <div class="reveal">
+        <!-- <h3 class="text-2xl font-bold mb-8 text-center">Connect with me</h3> -->
+
+        <!-- Wider cards: 1 col on mobile, 2 on sm, 3 on lg, 4 on xl -->
+        <div class="grid grid-cols-4 gap-3 sm:gap-6">
+        <!-- Email -->
+        <a href="mailto:Sriramrao.Chennamaneni@gmail.com"
+           class="group p-3 sm:p-6 rounded-xl bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:shadow-card-hover flex items-center gap-2 sm:gap-4 transition-all min-w-0">
+          <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-brand-100 dark:bg-brand-900/30 flex items-center justify-center group-hover:scale-105 transition-transform">
+            <i data-lucide="mail" class="w-5 h-5 sm:w-6 sm:h-6 text-brand-600"></i>
+          </div>
+          <div class="min-w-0">
+            <p class="font-semibold text-sm sm:text-base">Email</p>
+            <p class="hidden sm:block text-gray-600 dark:text-gray-400 truncate">Sriramrao.Chennamaneni@gmail.com</p>
+          </div>
+        </a>
+
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com/in/sriramchennamaneni/" target="_blank" rel="noopener noreferrer"
+           class="group p-3 sm:p-6 rounded-xl bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:shadow-card-hover flex items-center gap-2 sm:gap-4 transition-all min-w-0">
+          <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-brand-100 dark:bg-brand-900/30 flex items-center justify-center group-hover:scale-105 transition-transform">
+            <i data-lucide="linkedin" class="w-5 h-5 sm:w-6 sm:h-6 text-brand-600"></i>
+          </div>
+          <div class="min-w-0">
+            <p class="font-semibold text-sm sm:text-base">LinkedIn</p>
+            <p class="hidden sm:block text-gray-600 dark:text-gray-400 truncate">/in/sriramchennamaneni</p>
+          </div>
+        </a>
+
+        <!-- GitHub -->
+        <a href="https://github.com/Sriramc27" target="_blank" rel="noopener noreferrer"
+           class="group p-3 sm:p-6 rounded-xl bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:shadow-card-hover flex items-center gap-2 sm:gap-4 transition-all min-w-0">
+          <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-brand-100 dark:bg-brand-900/30 flex items-center justify-center group-hover:scale-105 transition-transform">
+            <i data-lucide="github" class="w-5 h-5 sm:w-6 sm:h-6 text-brand-600"></i>
+          </div>
+          <div class="min-w-0">
+            <p class="font-semibold text-sm sm:text-base">GitHub</p>
+            <p class="hidden sm:block text-gray-600 dark:text-gray-400 truncate">github.com/Sriramc27</p>
+          </div>
+        </a>
+
+        <!-- Resume -->
+        <a href="Sriramrao_Chennamaneni_Res.pdf" download
+           class="group p-3 sm:p-6 rounded-xl bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:shadow-card-hover flex items-center gap-2 sm:gap-4 transition-all min-w-0">
+          <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-brand-100 dark:bg-brand-900/30 flex items-center justify-center group-hover:scale-105 transition-transform">
+            <i data-lucide="file-text" class="w-5 h-5 sm:w-6 sm:h-6 text-brand-600"></i>
+          </div>
+          <div class="min-w-0">
+            <p class="font-semibold text-sm sm:text-base">Resume</p>
+            <p class="hidden sm:block text-gray-600 dark:text-gray-400 truncate">Download PDF</p>
+          </div>
+        </a>
+      </div>
+        <!-- CONTACT FORM: works on GitHub Pages via mailto fallback; supports Formspree if endpoint added -->
+          <!-- <div class="reveal">
+            <form id="contactForm" class="space-y-6" novalidate>
+              <div>
+                <label for="name" class="block text-sm font-semibold mb-2">Name</label>
+                <input type="text" id="name" name="name" required
+                      class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:border-brand-600 focus:ring-2 focus:ring-brand-200 dark:focus:ring-brand-800 transition-all">
+              </div>
+              <div>
+                <label for="email" class="block text-sm font-semibold mb-2">Email</label>
+                <input type="email" id="email" name="email" required
+                      class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:border-brand-600 focus:ring-2 focus:ring-brand-200 dark:focus:ring-brand-800 transition-all">
+              </div>
+              <div>
+                <label for="message" class="block text-sm font-semibold mb-2">Message</label>
+                <textarea id="message" name="message" rows="5" required
+                          class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:border-brand-600 focus:ring-2 focus:ring-brand-200 dark:focus:ring-brand-800 transition-all resize-none"></textarea>
+              </div>
+              <button id="submitBtn" type="submit"
+                      class="w-full px-8 py-4 rounded-lg bg-brand-600 text-white font-semibold hover:bg-brand-700 transition-all shadow-lg hover:shadow-glow">
+                Send Message
+              </button>
+              <p id="formStatus" class="text-sm mt-2"></p>
+            </form>
+          </div> -->
+          <!-- /CONTACT FORM -->
+      </div>
+    </div>
+  </section>
+
+
+
+  <footer class="py-8 bg-gray-50 dark:bg-gray-950 border-t border-gray-200 dark:border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+      <p class="text-gray-600 dark:text-gray-400">© <span id="year"></span> Sriram Chennamaneni. Built with passion and coffee ☕</p>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    // THEME
+    const themeToggle=document.getElementById('themeToggle'); const html=document.documentElement;
+    function setTheme(dark){ html.classList.toggle('dark',dark); localStorage.setItem('theme',dark?'dark':'light'); themeToggle.textContent=dark?'☀️':'🌙'; }
+    const savedTheme=localStorage.getItem('theme'); const prefersDark=window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setTheme(savedTheme==='dark'||(!savedTheme&&prefersDark));
+    themeToggle?.addEventListener('click',()=>setTheme(!html.classList.contains('dark')));
+
+    // MOBILE NAV
+    const menuBtn=document.getElementById('menuBtn'); const mobileNav=document.getElementById('mobileNav');
+    menuBtn?.addEventListener('click',()=>mobileNav.classList.toggle('hidden'));
+
+    // PROGRESS BAR
+    const progress=document.getElementById('progress');
+    function updateProgress(){ const scrolled=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight))*100; progress.style.width=Math.min(scrolled,100)+'%'; }
+    window.addEventListener('scroll',updateProgress);
+
+    // SECTION OBSERVER + ACTIVE NAV
+    const sections=document.querySelectorAll('section[id]'); const navLinks=document.querySelectorAll('nav a[href^="#"]');
+    const observer=new IntersectionObserver((entries)=>{ entries.forEach(entry=>{ if(entry.isIntersecting){ entry.target.querySelectorAll('.reveal').forEach(el=>el.classList.add('show')); const id='#'+entry.target.id; navLinks.forEach(link=>{ link.classList.toggle('nav-active',link.getAttribute('href')===id); }); } }); },{threshold:.2,rootMargin:'-50px 0px'});
+    sections.forEach(s=>observer.observe(s));
+
+    // SMOOTH SCROLL
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',e=>{
+        const href=a.getAttribute('href'); if(!href||href==='#') return;
+        e.preventDefault(); const target=document.querySelector(href);
+        if(target){ target.scrollIntoView({behavior:'smooth',block:'start'}); mobileNav?.classList.add('hidden'); }
+      });
+    });
+
+    // YEAR
+    document.getElementById('year').textContent=new Date().getFullYear();
+
+    // CONTACT FORM — works on GitHub Pages via mailto; supports Formspree if endpoint is set
+    const FORMSPREE_ENDPOINT = null; // e.g. "https://formspree.io/f/yourFormId"
+    const formEl=document.getElementById('contactForm'); const statusEl=document.getElementById('formStatus'); const submitBtn=document.getElementById('submitBtn');
+
+    formEl?.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      statusEl.textContent='';
+      const name=document.getElementById('name').value.trim();
+      const email=document.getElementById('email').value.trim();
+      const message=document.getElementById('message').value.trim();
+      if(!name||!email||!message){ statusEl.textContent='Please fill in all fields.'; statusEl.className='text-sm mt-2 text-red-600'; return; }
+
+      submitBtn.disabled=true; submitBtn.textContent='Sending...';
+
+      try{
+        if(FORMSPREE_ENDPOINT){
+          const res=await fetch(FORMSPREE_ENDPOINT,{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify({name,email,message})});
+          if(res.ok){
+            statusEl.textContent='Thanks! Your message has been sent.'; statusEl.className='text-sm mt-2 text-green-600';
+            formEl.reset();
+          }else{
+            throw new Error('Network response was not ok.');
+          }
+        }else{
+          // Mailto fallback (opens user's email client) — works on GitHub Pages
+          const subject=encodeURIComponent(`Portfolio contact from ${name}`);
+          const body=encodeURIComponent(`${message}\n\nFrom: ${name} <${email}>`);
+          window.location.href=`mailto:Sriramrao.Chennamaneni@gmail.com?subject=${subject}&body=${body}`;
+          statusEl.textContent='Opening your email client...'; statusEl.className='text-sm mt-2 text-gray-600';
+          formEl.reset();
+        }
+      }catch(err){
+        statusEl.textContent='Oops, something went wrong. Please try again or email me directly.'; statusEl.className='text-sm mt-2 text-red-600';
+      }finally{
+        submitBtn.disabled=false; submitBtn.textContent='Send Message';
+      }
+    });
+  </script>
+</body>
+</html>
